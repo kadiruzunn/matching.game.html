@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Matching Game</title>
+        <style>
+            .btn{
+                font-size:30px;
+                width: 100px;
+                height: 100px;
+
+            }
+        </style>
+    </head>
+    <body>
+       <table>
+           <tr>
+               <td> <button id="0" onclick = "clicked(this.id)" class="btn"></button></td>
+               <td> <button id="1" onclick = "clicked(this.id)" class="btn"></button></td>
+          
+                <td> <button id="2" onclick = "clicked(this.id)" class="btn"></button></td>
+                <td> <button id="3" onclick = "clicked(this.id)" class="btn"></button></td>
+            </tr>
+            <tr>
+                <td> <button id="4" onclick = "clicked(this.id)" class="btn"></button></td>
+                <td> <button id="5" onclick = "clicked(this.id)" class="btn"></button></td>
+           
+                 <td> <button id="6" onclick = "clicked(this.id)" class="btn"></button></td>
+                 <td> <button id="7" onclick = "clicked(this.id)" class="btn"></button></td>
+             </tr>
+             <tr>
+                <td> <button id="8" onclick = "clicked(this.id)" class="btn"></button></td>
+                <td> <button id="9" onclick = "clicked(this.id)" class="btn"></button></td>
+           
+                 <td> <button id="10" onclick = "clicked(this.id)" class="btn"></button></td>
+                 <td> <button id="11" onclick = "clicked(this.id)" class="btn"></button></td>
+             </tr>
+             <tr>
+                <td> <button id="12" onclick = "clicked(this.id)" class="btn"></button></td>
+                <td> <button id="13" onclick = "clicked(this.id)" class="btn"></button></td>
+           
+                 <td> <button id="14" onclick = "clicked(this.id)" class="btn"></button></td>
+                 <td> <button id="15" onclick = "clicked(this.id)" class="btn"></button></td>
+             </tr>
+
+       </table>
+          
+
+        <script>
+            const icons = ["X","Y", "Y", "X", "A","B","C","A","C","B","Z","Z","T","U","U","T"];
+
+            let firstClicked = "";
+            let secondClicked = "";
+            const clickedButtons = [];
+
+            var rightTurns = 0;
+
+            function clicked(btnId){
+
+                let btn = document.getElementById(btnId);
+                let index =  Number(btnId);
+
+                if(firstClicked === ""){
+                    firstClicked = icons[index];
+                   
+                    btn.innerHTML = firstClicked;
+                    clickedButtons[0] = btn;
+                   
+
+                } else if(secondClicked === ""){
+                   
+                    secondClicked = icons[index];
+                    btn.innerHTML = secondClicked;
+                    clickedButtons[1] = btn;
+
+                    if(firstClicked !== secondClicked){
+                        setTimeout(function() {
+                clickedButtons[0].innerHTML = "";
+                clickedButtons[1].innerHTML = "";
+            }, 800);
+                    } else{
+                        rightTurns++;
+
+                        if(rightTurns === 8){
+                            setTimeout(function() {
+                                alert("Tebrikler");
+            }, 200);
+                           
+                        }
+                    }
+                    firstClicked = secondClicked = "";
+                }
+
+            }
+        </script>
+    </body>
+</html>
